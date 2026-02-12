@@ -5,9 +5,13 @@ import { LibSQLStore } from '@mastra/libsql';
 import { Observability, DefaultExporter, CloudExporter, SensitiveDataFilter } from '@mastra/observability';
 import { weatherWorkflow } from './workflows/weather-workflow';
 import { weatherAgent } from './agents/weather-agent';
+import { VercelDeployer } from "@mastra/deployer-vercel";
 import 'dotenv/config';
 
+
+
 export const mastra = new Mastra({
+  deployer: new VercelDeployer(),
   workflows: { weatherWorkflow },
   agents: { weatherAgent },
   storage: new LibSQLStore({
